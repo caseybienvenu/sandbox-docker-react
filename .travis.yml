@@ -9,3 +9,15 @@ before_install:
 
 script:
   - docker run -e CI=true caseybienvenu/sandbox-docker-react npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-west-2"
+  app: "Sandbox Docker React"
+  env: "SandboxDockerReact-env"
+  bucket_name: "elasticbeanstalk-us-west-2-227334245966"
+  bucket_path: "Sandbox Docker React"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
